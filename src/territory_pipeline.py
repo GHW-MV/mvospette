@@ -18,14 +18,19 @@ from __future__ import annotations
 
 import argparse
 import csv
+import heapq
+import logging
 import math
 import zlib
 import sqlite3
 from dataclasses import dataclass
 from pathlib import Path
 from typing import Dict, Iterable, List, Optional, Tuple
+import pandas as pd
 
 BASE_DIR = Path(__file__).resolve().parent.parent
+logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(message)s")
+logger = logging.getLogger(__name__)
 
 
 @dataclass
@@ -101,10 +106,11 @@ def parse_status(value: str) -> str:
 def haversine_miles(lat1: float, lon1: float, lat2: float, lon2: float) -> float:
     """Compute great-circle distance between two lat/lng pairs in miles."""
     radius_miles = 3958.8
-    phi1 = math.radians(lat1)
-    phi2 = math.radians(lat2)
-    d_phi = math.radians(lat2 - lat1)
-    d_lambda = math.radians(lon2 - lon1)
+    to_rad = math.radians
+    phi1 = to_rad(lat1)
+    phi2 = to_rad(lat2)
+    d_phi = to_rad(lat2 - lat1)
+    d_lambda = to_rad(lon2 - lon1)
 
     a = math.sin(d_phi / 2) ** 2 + math.cos(phi1) * math.cos(phi2) * math.sin(
         d_lambda / 2
@@ -118,6 +124,22 @@ def load_zip_master(path: Path) -> Dict[str, ZipRecord]:
     zip_index: Dict[str, ZipRecord] = {}
     with path.open(newline="", encoding="utf-8") as fh:
         reader = csv.DictReader(fh)
+        if reader.fieldnames:
+            reader.fieldnames = [(f or "").lstrip("\ufeff").strip() for f in reader.fieldnames]
+        required = {
+            "zip",
+            "lat",
+            "lng",
+            "city",
+            "state_id",
+            "state_name",
+            "county_name",
+            "population",
+            "timezone",
+        }
+        missing = required.difference(set(reader.fieldnames or []))
+        if missing:
+            raise ValueError(f"Missing required columns in ZIP master: {sorted(missing)}")
         for row in reader:
             zip_code = normalize_zip(row.get("zip", ""))
             if not zip_code:
@@ -148,6 +170,19 @@ def load_rep_activity(
     skipped_missing_zip = 0
     with path.open(newline="", encoding="utf-8") as fh:
         reader = csv.DictReader(fh)
+        if reader.fieldnames:
+            reader.fieldnames = [(f or "").lstrip("\ufeff").strip() for f in reader.fieldnames]
+        required = {
+            "d.Property Zip",
+            "d.Property State",
+            "U.Full Name",
+            "User Email",
+            "Deal Count",
+            "Deal Owner Status",
+        }
+        missing = required.difference(set(reader.fieldnames or []))
+        if missing:
+            raise ValueError(f"Missing required columns in rep activity: {sorted(missing)}")
         for row in reader:
             zip_code = normalize_zip(row.get("d.Property Zip"))
             if not zip_code or zip_code not in zip_master:
@@ -179,7 +214,7 @@ def load_rep_activity(
                     status=status,
                 )
     if skipped_missing_zip:
-        print(f"Skipped {skipped_missing_zip} rows with missing/unknown ZIPs.")
+        logger.warning("Skipped %d rows with missing/unknown ZIPs.", skipped_missing_zip)
     return list(aggregates.values())
 
 
@@ -220,11 +255,9 @@ def infer_prospective_owner(
             (pt, haversine_miles(target.lat, target.lng, pt.lat, pt.lng))
             for pt in active_points
         ]
-        expanded.sort(key=lambda item: item[1])
-        neighbors = expanded[:max_neighbors]
+        neighbors = heapq.nsmallest(max_neighbors, expanded, key=lambda item: item[1])
     else:
-        neighbors.sort(key=lambda item: item[1])
-        neighbors = neighbors[:max_neighbors]
+        neighbors = heapq.nsmallest(max_neighbors, neighbors, key=lambda item: item[1])
 
     if not neighbors:
         return None, None, None
@@ -468,6 +501,15 @@ def export_assignments_csv(assignments: List[TerritoryAssignment], path: Path) -
             writer.writerow(row.__dict__)
 
 
+def export_assignments_parquet(assignments: List[TerritoryAssignment], path: Path) -> None:
+    path.parent.mkdir(parents=True, exist_ok=True)
+    df = pd.DataFrame([a.__dict__ for a in assignments])
+    try:
+        df.to_parquet(path, index=False)
+    except ImportError as exc:
+        logger.warning("Parquet export failed (missing dependency): %s", exc)
+
+
 def run_pipeline(
     zip_master_path: Path,
     rep_activity_path: Path,
@@ -476,20 +518,24 @@ def run_pipeline(
     radius_miles: float,
     max_neighbors: int,
 ) -> None:
-    print("Loading ZIP master...")
+    logger.info("Loading ZIP master...")
     zip_master = load_zip_master(zip_master_path)
-    print(f"Loaded {len(zip_master)} ZIP records.")
+    logger.info("Loaded %d ZIP records.", len(zip_master))
 
-    print("Loading rep activity...")
+    logger.info("Loading rep activity...")
     activity = load_rep_activity(rep_activity_path, zip_master)
-    print(f"Loaded {len(activity)} rep activity records after normalization.")
+    logger.info("Loaded %d rep activity records after normalization.", len(activity))
 
-    print("Building assignments...")
+    logger.info("Building assignments...")
     assignments = build_assignments(zip_master, activity, radius_miles, max_neighbors)
     owned = sum(1 for a in assignments if a.owner_email)
-    print(f"Assignments ready. Active-owned ZIPs: {owned}; prospective: {len(assignments) - owned}.")
+    logger.info(
+        "Assignments ready. Active-owned ZIPs: %d; prospective: %d.",
+        owned,
+        len(assignments) - owned,
+    )
 
-    print(f"Initializing database at {db_path} ...")
+    logger.info("Initializing database at %s ...", db_path)
     db_path.parent.mkdir(parents=True, exist_ok=True)
     conn = sqlite3.connect(db_path)
     init_db(conn)
@@ -497,11 +543,14 @@ def run_pipeline(
     persist_rep_activity(conn, activity)
     persist_assignments(conn, assignments)
     conn.close()
-    print("Database populated.")
+    logger.info("Database populated.")
 
-    print(f"Exporting assignments to {export_path} ...")
+    logger.info("Exporting assignments to %s ...", export_path)
     export_assignments_csv(assignments, export_path)
-    print("Export complete.")
+    parquet_path = export_path.with_suffix(".parquet")
+    logger.info("Exporting assignments to %s ...", parquet_path)
+    export_assignments_parquet(assignments, parquet_path)
+    logger.info("Export complete.")
 
 
 def parse_args() -> argparse.Namespace:
