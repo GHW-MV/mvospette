@@ -1,0 +1,121 @@
+[Line: 93 Field: 3] (st thomas) -WARNING: Invalid GEO LOCATION
+[Line: 139 Field: 5] (massachusetts) -WARNING: Invalid GEO LOCATION
+[Line: 94 Field: 6] (st. croix) -WARNING: Invalid GEO LOCATION
+[Line: 139 Field: 6] (hampden) -WARNING: Invalid GEO LOCATION
+[Line: 155 Field: 6] (berkshire) -WARNING: Invalid GEO LOCATION
+[Line: 169 Field: 6] (franklin) -WARNING: Invalid GEO LOCATION
+[Line: 360 Field: 3] (hanscom afb) -WARNING: Invalid GEO LOCATION
+[Line: 200 Field: 5] (massachusetts) -WARNING: Invalid GEO LOCATION
+[Line: 201 Field: 6] (hampden) -WARNING: Invalid GEO LOCATION
+[Line: 214 Field: 6] (berkshire) -WARNING: Invalid GEO LOCATION
+[Line: 246 Field: 6] (franklin) -WARNING: Invalid GEO LOCATION
+[Line: 278 Field: 6] (middlesex) -WARNING: Invalid GEO LOCATION
+[Line: 400 Field: 5] (massachusetts) -WARNING: Invalid GEO LOCATION
+[Line: 400 Field: 6] (middlesex) -WARNING: Invalid GEO LOCATION
+[Line: 582 Field: 6] (barnstable) -WARNING: Invalid GEO LOCATION
+[Line: 584 Field: 6] (dukes) -WARNING: Invalid GEO LOCATION
+[Line: 593 Field: 6] (nantucket) -WARNING: Invalid GEO LOCATION
+[Line: 721 Field: 3] (prudence island) -WARNING: Invalid GEO LOCATION
+[Line: 678 Field: 4] (ri) -WARNING: Invalid GEO LOCATION
+[Line: 759 Field: 4] (nh) -WARNING: Invalid GEO LOCATION
+[Line: 600 Field: 5] (massachusetts) -WARNING: Invalid GEO LOCATION
+[Line: 678 Field: 5] (rhode island) -WARNING: Invalid GEO LOCATION
+[Line: 759 Field: 5] (new hampshire) -WARNING: Invalid GEO LOCATION
+[Line: 600 Field: 6] (barnstable) -WARNING: Invalid GEO LOCATION
+[Line: 601 Field: 6] (nantucket) -WARNING: Invalid GEO LOCATION
+[Line: 602 Field: 6] (dukes) -WARNING: Invalid GEO LOCATION
+[Line: 678 Field: 6] (providence) -WARNING: Invalid GEO LOCATION
+[Line: 759 Field: 6] (hillsborough) -WARNING: Invalid GEO LOCATION
+[Line: 760 Field: 6] (rockingham) -WARNING: Invalid GEO LOCATION
+[Line: 770 Field: 6] (merrimack) -WARNING: Invalid GEO LOCATION
+[Line: 800 Field: 4] (nh) -WARNING: Invalid GEO LOCATION
+[Line: 800 Field: 5] (new hampshire) -WARNING: Invalid GEO LOCATION
+[Line: 800 Field: 6] (grafton) -WARNING: Invalid GEO LOCATION
+[Line: 801 Field: 6] (merrimack) -WARNING: Invalid GEO LOCATION
+[Line: 803 Field: 6] (belknap) -WARNING: Invalid GEO LOCATION
+[Line: 811 Field: 6] (carroll) -WARNING: Invalid GEO LOCATION
+[Line: 824 Field: 6] (hillsborough) -WARNING: Invalid GEO LOCATION
+[Line: 837 Field: 6] (rockingham) -WARNING: Invalid GEO LOCATION
+[Line: 849 Field: 6] (sullivan) -WARNING: Invalid GEO LOCATION
+[Line: 888 Field: 6] (coos) -WARNING: Invalid GEO LOCATION
+[Line: 892 Field: 6] (oxford) -WARNING: Invalid GEO LOCATION
+[Line: 950 Field: 6] (strafford) -WARNING: Invalid GEO LOCATION
+[Line: 1,173 Field: 3] (dover foxcroft) -WARNING: Invalid GEO LOCATION
+[Line: 1,000 Field: 4] (nh) -WARNING: Invalid GEO LOCATION
+[Line: 1,000 Field: 5] (new hampshire) -WARNING: Invalid GEO LOCATION
+[Line: 1,006 Field: 5] (maine) -WARNING: Invalid GEO LOCATION
+[Line: 1,000 Field: 6] (rockingham) -WARNING: Invalid GEO LOCATION
+[Line: 1,001 Field: 6] (carroll) -WARNING: Invalid GEO LOCATION
+[Line: 1,002 Field: 6] (strafford) -WARNING: Invalid GEO LOCATION
+[Line: 1,019 Field: 6] (cumberland) -WARNING: Invalid GEO LOCATION
+[Line: 1,022 Field: 6] (sagadahoc) -WARNING: Invalid GEO LOCATION
+[Line: 1,024 Field: 6] (oxford) -WARNING: Invalid GEO LOCATION
+[Line: 1,088 Field: 6] (androscoggin) -WARNING: Invalid GEO LOCATION
+[Line: 1,099 Field: 6] (franklin) -WARNING: Invalid GEO LOCATION
+[Line: 1,113 Field: 6] (kennebec) -WARNING: Invalid GEO LOCATION
+[Line: 1,137 Field: 6] (lincoln) -WARNING: Invalid GEO LOCATION
+[Line: 1,149 Field: 6] (waldo) -WARNING: Invalid GEO LOCATION
+[Line: 1,157 Field: 6] (penobscot) -WARNING: Invalid GEO LOCATION
+[Line: 1,158 Field: 6] (piscataquis) -WARNING: Invalid GEO LOCATION
+[Line: 1,159 Field: 6] (hancock) -WARNING: Invalid GEO LOCATION
+[Line: 1,189 Field: 6] (aroostook) -WARNING: Invalid GEO LOCATION
+[Line: 1,243 Field: 3] (squirrel island) -WARNING: Invalid GEO LOCATION
+[Line: 1,200 Field: 5] (maine) -WARNING: Invalid GEO LOCATION
+[Line: 1,200 Field: 6] (piscataquis) -WARNING: Invalid GEO LOCATION
+[Line: 1,201 Field: 6] (penobscot) -WARNING: Invalid GEO LOCATION
+[Line: 1,203 Field: 6] (aroostook) -WARNING: Invalid GEO LOCATION
+[Line: 1,204 Field: 6] (hancock) -WARNING: Invalid GEO LOCATION
+[Line: 1,221 Field: 6] (waldo) -WARNING: Invalid GEO LOCATION
+[Line: 1,223 Field: 6] (sagadahoc) -WARNING: Invalid GEO LOCATION
+[Line: 1,224 Field: 6] (lincoln) -WARNING: Invalid GEO LOCATION
+[Line: 1,231 Field: 6] (knox) -WARNING: Invalid GEO LOCATION
+[Line: 1,368 Field: 6] (kennebec) -WARNING: Invalid GEO LOCATION
+[Line: 1,387 Field: 6] (franklin) -WARNING: Invalid GEO LOCATION
+[Line: 1,432 Field: 4] (vt) -WARNING: Invalid GEO LOCATION
+[Line: 1,400 Field: 5] (maine) -WARNING: Invalid GEO LOCATION
+[Line: 1,432 Field: 5] (vermont) -WARNING: Invalid GEO LOCATION
+[Line: 1,400 Field: 6] (waldo) -WARNING: Invalid GEO LOCATION
+[Line: 1,402 Field: 6] (penobscot) -WARNING: Invalid GEO LOCATION
+[Line: 1,403 Field: 6] (franklin) -WARNING: Invalid GEO LOCATION
+[Line: 1,408 Field: 6] (kennebec) -WARNING: Invalid GEO LOCATION
+[Line: 1,409 Field: 6] (oxford) -WARNING: Invalid GEO LOCATION
+[Line: 1,432 Field: 6] (windsor) -WARNING: Invalid GEO LOCATION
+[Line: 1,437 Field: 6] (orange) -WARNING: Invalid GEO LOCATION
+[Line: 1,481 Field: 6] (windham) -WARNING: Invalid GEO LOCATION
+[Line: 1,490 Field: 6] (bennington) -WARNING: Invalid GEO LOCATION
+[Line: 1,529 Field: 6] (chittenden) -WARNING: Invalid GEO LOCATION
+[Line: 1,535 Field: 6] (grand isle) -WARNING: Invalid GEO LOCATION
+[Line: 1,537 Field: 6] (lamoille) -WARNING: Invalid GEO LOCATION
+[Line: 1,538 Field: 6] (addison) -WARNING: Invalid GEO LOCATION
+[Line: 1,732 Field: 3] (vernon rockville) -WARNING: Invalid GEO LOCATION
+[Line: 1,797 Field: 3] (storrs mansfield) -WARNING: Invalid GEO LOCATION
+[Line: 1,600 Field: 4] (vt) -WARNING: Invalid GEO LOCATION
+[Line: 1,697 Field: 4] (ct) -WARNING: Invalid GEO LOCATION
+[Line: 1,600 Field: 5] (vermont) -WARNING: Invalid GEO LOCATION
+[Line: 1,697 Field: 5] (connecticut) -WARNING: Invalid GEO LOCATION
+[Line: 1,602 Field: 6] (orange) -WARNING: Invalid GEO LOCATION
+[Line: 1,607 Field: 6] (lamoille) -WARNING: Invalid GEO LOCATION
+[Line: 1,615 Field: 6] (addison) -WARNING: Invalid GEO LOCATION
+[Line: 1,624 Field: 6] (windsor) -WARNING: Invalid GEO LOCATION
+[Line: 1,640 Field: 6] (bennington) -WARNING: Invalid GEO LOCATION
+[Line: 1,651 Field: 6] (orleans) -WARNING: Invalid GEO LOCATION
+[Line: 1,697 Field: 6] (capitol) -WARNING: Invalid GEO LOCATION
+[Line: 1,699 Field: 6] (naugatuck valley) -WARNING: Invalid GEO LOCATION
+[Line: 1,700 Field: 6] (northwest hills) -WARNING: Invalid GEO LOCATION
+[Line: 1,772 Field: 6] (southeastern connecticut) -WARNING: Invalid GEO LOCATION
+[Line: 1,775 Field: 6] (northeastern connecticut) -WARNING: Invalid GEO LOCATION
+[Line: 1,887 Field: 3] (rockfall) -WARNING: Invalid GEO LOCATION
+[Line: 1,939 Field: 3] (new preston marble dale) -WARNING: Invalid GEO LOCATION
+[Line: 1,951 Field: 3] (washington depot) -WARNING: Invalid GEO LOCATION
+[Line: 1,800 Field: 4] (ct) -WARNING: Invalid GEO LOCATION
+[Line: 1,840 Field: 4] (ny) -WARNING: Invalid GEO LOCATION
+[Line: 1,986 Field: 4] (nj) -WARNING: Invalid GEO LOCATION
+[Line: 1,800 Field: 5] (connecticut) -WARNING: Invalid GEO LOCATION
+[Line: 1,840 Field: 5] (new york) -WARNING: Invalid GEO LOCATION
+[Line: 1,986 Field: 5] (new jersey) -WARNING: Invalid GEO LOCATION
+[Line: 1,800 Field: 6] (northeastern connecticut) -WARNING: Invalid GEO LOCATION
+[Line: 1,801 Field: 6] (capitol) -WARNING: Invalid GEO LOCATION
+[Line: 1,802 Field: 6] (southeastern connecticut) -WARNING: Invalid GEO LOCATION
+[Line: 1,826 Field: 6] (lower connecticut river valley) -WARNING: Invalid GEO LOCATION
+[Line: 1,841 Field: 6] (naugatuck valley) -WARNING: Invalid GEO LOCATION
+[Line: 1,843 Field: 6] (south central connecticut) -WARNING: Invalid GEO LOCATION
