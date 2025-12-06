@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mason Vospette</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="nav">
+    <div class="brand">MV</div>
+    <nav>
+      <a href="#home">Home</a>
+      <a href="#work">Work</a>
+      <a href="#apps">Apps</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <main id="home" class="shell">
+    <section class="hero">
+      <p class="eyebrow">Product + Engineering</p>
+      <h1>Intentional, quiet, dark.</h1>
+      <p class="lede">Building sharp internal tools, data flows, and interfaces that stay out of the way.</p>
+      <div class="cta-row">
+        <button id="cta-primary">View Apps</button>
+        <button class="ghost" id="cta-secondary">Contact</button>
+      </div>
+    </section>
+
+    <section id="work" class="panel">
+      <div class="panel-head">
+        <h2>Recent</h2>
+        <span class="hint">Lightweight, fast, minimal surface area.</span>
+      </div>
+      <div class="grid">
+        <article class="card">
+          <p class="label">Territory Intelligence</p>
+          <h3>ZIP-level ownership lookup</h3>
+          <p class="body">Streamlit + FastAPI + Parquet. Inference, mapping, and reporting for sales ops.</p>
+          <span class="meta">Status: Live</span>
+        </article>
+        <article class="card">
+          <p class="label">Data Pipelines</p>
+          <h3>Idempotent ingestion</h3>
+          <p class="body">Normalize, validate, and hydrate SQLite/Parquet for downstream apps.</p>
+          <span class="meta">Status: Stable</span>
+        </article>
+        <article class="card">
+          <p class="label">Infra</p>
+          <h3>Single-node hardened</h3>
+          <p class="body">Caddy TLS, systemd services, bearer auth, optional Google sign-in via proxy.</p>
+          <span class="meta">Status: Ongoing</span>
+        </article>
+      </div>
+    </section>
+
+    <section id="apps" class="panel">
+      <div class="panel-head">
+        <h2>Apps</h2>
+        <span class="hint">A hub that can host multiple tools.</span>
+      </div>
+      <div class="app-grid">
+        <div class="app-card">
+          <div class="app-body">
+            <p class="label">Internal</p>
+            <h3>Territory Map</h3>
+            <p class="body">Secure ZIP lookup, ownership, and inference. Dark UI, fast filters.</p>
+          </div>
+          <div class="app-actions">
+            <button class="ghost" data-launch="territory">Launch</button>
+          </div>
+        </div>
+        <div class="app-card">
+          <div class="app-body">
+            <p class="label">Placeholder</p>
+            <h3>Next App</h3>
+            <p class="body">Reserve this slot for the next tool—auth + proxy ready.</p>
+          </div>
+          <div class="app-actions">
+            <button class="ghost" data-launch="next">Notify</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="panel">
+      <div class="panel-head">
+        <h2>Contact</h2>
+        <span class="hint">Let’s keep it focused.</span>
+      </div>
+      <div class="contact">
+        <div class="line">
+          <span class="key">Email</span>
+          <span class="value">hello@mvospette.com</span>
+        </div>
+        <div class="line">
+          <span class="key">Location</span>
+          <span class="value">Remote / SFO3</span>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <span>© 2025 Mason Vospette</span>
+    <span class="muted">Built to stay quiet and fast.</span>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

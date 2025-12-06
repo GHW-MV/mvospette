@@ -1,0 +1,257 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+:root {
+  --bg: #0b0b0f;
+  --panel: #12121a;
+  --card: #191924;
+  --text: #e8e8ef;
+  --muted: #9aa0b5;
+  --accent: #7fb4ff;
+  --border: #272737;
+  --radius: 16px;
+  --font: "SF Pro Display", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font);
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  color: var(--text);
+  text-decoration: none;
+}
+
+.nav {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 32px;
+  background: rgba(11, 11, 15, 0.75);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--border);
+}
+
+.nav .brand {
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}
+
+.nav nav a {
+  margin-left: 18px;
+  font-size: 14px;
+  color: var(--muted);
+  transition: color 0.2s ease;
+}
+
+.nav nav a:hover {
+  color: var(--text);
+}
+
+.shell {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 48px 24px 80px;
+}
+
+.hero {
+  padding: 32px;
+  background: linear-gradient(135deg, #111119, #0d0d12);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+}
+
+.eyebrow {
+  color: var(--muted);
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin: 0 0 12px;
+}
+
+h1 {
+  margin: 0 0 12px;
+  font-size: 32px;
+  font-weight: 700;
+}
+
+.lede {
+  margin: 0 0 24px;
+  color: var(--muted);
+  max-width: 620px;
+}
+
+.cta-row {
+  display: flex;
+  gap: 12px;
+}
+
+button {
+  border: none;
+  padding: 12px 16px;
+  border-radius: 999px;
+  background: var(--accent);
+  color: #0b0b0f;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 12px 24px rgba(127, 180, 255, 0.2);
+}
+
+button.ghost {
+  background: transparent;
+  color: var(--text);
+  border: 1px solid var(--border);
+}
+
+.panel {
+  margin-top: 32px;
+  padding: 24px;
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+}
+
+.panel-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.panel-head h2 {
+  margin: 0;
+  font-size: 20px;
+}
+
+.hint {
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 16px;
+}
+
+.card {
+  padding: 18px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+}
+
+.card .label {
+  color: var(--muted);
+  font-size: 12px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  margin: 0 0 8px;
+}
+
+.card h3 {
+  margin: 0 0 8px;
+  font-size: 18px;
+}
+
+.card .body {
+  color: var(--muted);
+  margin: 0 0 12px;
+}
+
+.meta {
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.app-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 16px;
+}
+
+.app-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: var(--card);
+}
+
+.app-body h3 {
+  margin: 4px 0 6px;
+}
+
+.app-body .body {
+  margin: 0;
+  color: var(--muted);
+}
+
+.contact .line {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.contact .line:last-child {
+  border-bottom: none;
+}
+
+.contact .key {
+  color: var(--muted);
+}
+
+.contact .value {
+  color: var(--text);
+}
+
+.footer {
+  border-top: 1px solid var(--border);
+  padding: 20px 24px 32px;
+  max-width: 1080px;
+  margin: 0 auto;
+  color: var(--muted);
+  display: flex;
+  justify-content: space-between;
+}
+
+.muted {
+  color: var(--muted);
+}
+
+@media (max-width: 720px) {
+  .nav {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+  .panel-head {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+  }
+  .app-card {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+}

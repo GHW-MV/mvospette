@@ -27,6 +27,15 @@ streamlit run src/streamlit_app.py
 - Toggle Active / Prospective / All.
 - Includes scatter layers for active/prospective and a heat layer driven by `deal_count`.
 
+## Deploying on a single server (no Docker)
+- Point DNS to your host (A record).
+- Serve the landing page at `static_site/` with Caddy (see `proxy/Caddyfile`):
+  - `root * /opt/mvospette/static_site`
+  - `reverse_proxy /app/* 127.0.0.1:8501` (Streamlit)
+  - `reverse_proxy /api/* 127.0.0.1:8000` (API, if running)
+- Keep services “always on” via systemd for Streamlit and API, binding to localhost; let Caddy handle HTTPS/hostnames.
+- For Google sign-in, place oauth2-proxy in front of the app with your Workspace domain; keep client secrets and tokens in env/systemd, not in source.
+
 ## Milestones (progress + testing)
 - Data ingestion wired: ZIP master + rep activity normalization (done).
 - Local persistence: SQLite schema + CSV export generated (done).

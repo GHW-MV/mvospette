@@ -1,11 +1,13 @@
 from __future__ import annotations
 
+import logging
 import os
+import time
 from pathlib import Path
 from typing import Optional, Tuple
 
 import pandas as pd
-from fastapi import Depends, FastAPI, HTTPException, Query, Response, status
+from fastapi import Depends, FastAPI, HTTPException, Header, Query, Response, status
 from fastapi.responses import FileResponse, JSONResponse
 
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -15,6 +17,8 @@ API_TOKEN_ENV = "TERRITORY_API_TOKEN"
 
 app = FastAPI(title="Territory Intelligence API", version="0.1.0")
 DATA_FRAME: Optional[pd.DataFrame] = None
+logger = logging.getLogger("territory_api")
+logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(message)s")
 
 
 def get_token() -> str:
@@ -24,17 +28,37 @@ def get_token() -> str:
     return token
 
 
-def auth_dependency(token: str = Depends(get_token), authorization: str = Query(None, alias="Authorization")) -> None:
-    # Accept "Bearer <token>" in Authorization header; also allow bare token via query param for simplicity.
+def auth_dependency(token: str = Depends(get_token), authorization: str = Header(None)) -> None:
+    """Simple bearer token check from Authorization header."""
+    provided = ""
     if authorization:
         parts = authorization.split()
         provided = parts[-1] if parts else ""
-    else:
-        provided = ""
     if not provided:
         raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="Missing token")
     if provided != token:
         raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="Invalid token")
+
+
+@app.middleware("http")
+async def log_requests(request, call_next):
+    start = time.monotonic()
+    response = None
+    try:
+        response = await call_next(request)
+        return response
+    finally:
+        duration_ms = (time.monotonic() - start) * 1000
+        logger.info(
+            "request",
+            extra={
+                "method": request.method,
+                "path": request.url.path,
+                "status": getattr(response, "status_code", "n/a"),
+                "duration_ms": round(duration_ms, 2),
+                "client": request.client.host if request.client else "n/a",
+            },
+        )
 
 
 def load_data() -> pd.DataFrame:
