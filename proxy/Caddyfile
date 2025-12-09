@@ -1,24 +1,37 @@
+{
+    # Optional: reduce noisy logs, keep minimal errors
+    log {
+        level WARN
+    }
+}
+
 mvospette.com {
     root * /opt/mvospette/static_site
+    encode gzip zstd
     file_server
 
     header {
-        Strict-Transport-Security "max-age=31536000; includeSubDomains"
+        Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
         X-Frame-Options "SAMEORIGIN"
         X-Content-Type-Options "nosniff"
         Referrer-Policy "no-referrer-when-downgrade"
+        Cache-Control "public, max-age=3600"
     }
 }
 
 app.mvospette.com {
+    # API first so /api/* is proxied correctly
     handle_path /api/* {
         reverse_proxy 127.0.0.1:8000
     }
+
+    # Everything else -> Streamlit UI
     handle {
         reverse_proxy 127.0.0.1:8501
     }
+
     header {
-        Strict-Transport-Security "max-age=31536000; includeSubDomains"
+        Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
         X-Frame-Options "SAMEORIGIN"
         X-Content-Type-Options "nosniff"
         Referrer-Policy "no-referrer-when-downgrade"
