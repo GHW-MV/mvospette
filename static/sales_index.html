@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guard Home Warranty - Sales Launch Party</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap');
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc; /* slate-50 */
+        }
+
+        /* Selection color */
+        ::selection {
+            background-color: #dbeafe; /* blue-100 */
+        }
+
+        /* Print Styles */
+        @media print {
+            @page {
+                margin: 0.5cm;
+                size: auto;
+            }
+            
+            body {
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+                background-color: white !important;
+            }
+
+            .print-grid-force {
+                display: grid !important;
+                grid-template-columns: repeat(12, minmax(0, 1fr)) !important;
+                gap: 2rem !important;
+            }
+            
+            .print-col-span-4 {
+                grid-column: span 4 / span 4 !important;
+            }
+            
+            .print-col-span-8 {
+                grid-column: span 8 / span 8 !important;
+            }
+
+            .print-static {
+                position: static !important;
+            }
+
+            .no-print {
+                display: none !important;
+            }
+
+            .shadow-sm, .shadow-md, .shadow-lg, .shadow-xl {
+                box-shadow: none !important;
+                border: 1px solid #e2e8f0 !important;
+            }
+
+            .text-white {
+                text-shadow: none !important;
+            }
+            
+            /* Hide the print button */
+            #print-btn {
+                display: none !important;
+            }
+            
+            /* Hide sticky header background */
+            header {
+                position: static !important;
+                background: white !important;
+                border: none !important;
+            }
+            header .px-4 {
+                padding-left: 0 !important;
+                padding-right: 0 !important;
+            }
+        }
+    </style>
+</head>
+<body class="min-h-screen text-slate-900">
+
+    <!-- Header -->
+    <header class="bg-white/90 backdrop-blur-sm border-b border-slate-200 sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <!-- Logo -->
+                <div class="flex items-center gap-3">
+                    <div class="relative w-10 h-10">
+                        <div class="absolute inset-0 bg-blue-600/20 rounded-xl transform rotate-3"></div>
+                        <div class="absolute inset-0 bg-slate-900 rounded-xl transform -rotate-3 flex items-center justify-center">
+                            <span class="text-white font-bold text-xl">G</span>
+                        </div>
+                    </div>
+                    <div class="flex flex-col">
+                        <span class="font-bold text-lg leading-tight text-slate-900">Guard</span>
+                        <span class="text-[10px] tracking-wider uppercase text-slate-500 font-medium">Home Warranty</span>
+                    </div>
+                </div>
+
+                <!-- Event Details -->
+                <div class="text-right">
+                    <div class="text-sm font-bold text-blue-600">Sales Launch Party</div>
+                    <div class="text-xs text-slate-500">Jan 9-10 • New Orleans</div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <!-- Hero Section -->
+        <div class="relative w-full h-[400px] rounded-2xl overflow-hidden shadow-xl mb-6 group">
+            <img 
+                src="./imports/586b40051acf77292470ba1d6596f2496c7d54ab.png" 
+                alt="Hero" 
+                class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                onerror="this.style.display='none'; this.parentElement.style.backgroundColor='#1e293b';"
+            />
+            <div class="absolute inset-0 bg-gradient-to-t from-slate-900/90 via-slate-900/40 to-transparent"></div>
+
+            <div class="absolute bottom-0 left-0 p-8 w-full max-w-3xl">
+                <div class="inline-flex items-center gap-2 bg-blue-600/90 backdrop-blur-sm px-4 py-2 rounded-full shadow-lg mb-6 transform transition-transform hover:scale-105 cursor-default">
+                    <svg class="w-3 h-3 text-white" viewBox="0 0 12 12" fill="none">
+                        <path d="M4 1V3" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" />
+                        <path d="M8 1V3" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" />
+                        <path d="M9.5 2H2.5C1.94772 2 1.5 2.44772 1.5 3V10C1.5 10.5523 1.94772 11 2.5 11H9.5C10.0523 11 10.5 10.5523 10.5 10V3C10.5 2.44772 10.0523 2 9.5 2Z" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" />
+                        <path d="M1.5 5H10.5" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                    <span class="text-white text-xs font-medium tracking-wide">January 9-10, 2026</span>
+                </div>
+
+                <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4 leading-tight tracking-tight drop-shadow-lg">
+                    Let the good times roll!
+                </h1>
+                
+                <p class="text-lg md:text-xl text-blue-100 max-w-xl leading-relaxed drop-shadow-md">
+                    Get ready for an unforgettable weekend of celebration and strategy in the Big Easy.
+                </p>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 print-grid-force">
+            <!-- Left Column -->
+            <div class="lg:col-span-4 lg:sticky lg:top-24 lg:self-start space-y-6 print-col-span-4 print-static">
+                
+                <!-- Accommodations -->
+                <div class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden h-full flex flex-col">
+                    <div class="p-6 border-b border-slate-100 flex items-center gap-3">
+                        <div class="w-10 h-10 bg-blue-50 rounded-lg flex items-center justify-center text-blue-600">
+                            <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+                            </svg>
+                        </div>
+                        <h2 class="text-xl font-bold text-slate-900">Accommodations</h2>
+                    </div>
+
+                    <div class="p-6 relative flex-grow bg-blue-600 text-white overflow-hidden">
+                        <div class="absolute top-0 right-0 w-64 h-64 bg-white/10 blur-3xl rounded-full transform translate-x-1/3 -translate-y-1/3 pointer-events-none"></div>
+                        
+                        <div class="relative z-10">
+                            <div class="text-blue-200 text-sm font-medium tracking-widest uppercase mb-2">Your Hotel</div>
+                            <h3 class="text-2xl font-bold mb-4">InterContinental New Orleans</h3>
+                            
+                            <div class="flex items-start gap-3 mb-6">
+                                <svg class="w-5 h-5 text-blue-200 mt-1 flex-shrink-0" fill="none" viewBox="0 0 16 16" stroke="currentColor">
+                                    <path d="M13.3333 6.66667C13.3333 9.99533 9.64067 13.462 8.40067 14.5327C8.28515 14.6195 8.14453 14.6665 8 14.6665C7.85547 14.6665 7.71485 14.6195 7.59933 14.5327C6.35933 13.462 2.66667 9.99533 2.66667 6.66667C2.66667 5.25218 3.22857 3.89562 4.22876 2.89543C5.22896 1.89524 6.58551 1.33333 8 1.33333C9.41449 1.33333 10.771 1.89524 11.7712 2.89543C12.7714 3.89562 13.3333 5.25218 13.3333 6.66667Z" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.33" />
+                                    <path d="M8 8.66667C9.10457 8.66667 10 7.77124 10 6.66667C10 5.5621 9.10457 4.66667 8 4.66667C6.89543 4.66667 6 5.5621 6 6.66667C6 7.77124 6.89543 8.66667 8 8.66667Z" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.33" />
+                                </svg>
+                                <div class="text-blue-100">
+                                    <p>444 St. Charles Avenue</p>
+                                    <p>New Orleans, LA 70130</p>
+                                </div>
+                            </div>
+
+                            <div class="bg-white/10 border border-white/20 rounded-xl p-4 mb-6 backdrop-blur-sm">
+                                <div class="text-xs text-blue-200 mb-1">Reservation:</div>
+                                <div class="font-bold text-sm">GHW Sales Launch Party</div>
+                            </div>
+
+                            <div class="grid grid-cols-2 gap-4">
+                                <div>
+                                    <div class="text-xs text-blue-200 uppercase tracking-wider mb-1">Check-in</div>
+                                    <div class="font-medium text-sm">Thursday, Jan 8 or Friday, Jan 9</div>
+                                </div>
+                                <div>
+                                    <div class="text-xs text-blue-200 uppercase tracking-wider mb-1">Check-out</div>
+                                    <div class="font-medium text-sm">Saturday, Jan 10 or Sunday, Jan 11</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Logistics -->
+                <div class="bg-slate-50 rounded-2xl border border-slate-200 p-6 md:p-8">
+                    <div class="flex items-center gap-3 mb-6">
+                        <div class="w-5 h-5 flex items-center justify-center text-blue-600">
+                            <svg class="w-full h-full" fill="none" viewBox="0 0 20 20" stroke="currentColor">
+                                <path d="M10 18.3333C14.6024 18.3333 18.3333 14.6024 18.3333 10C18.3333 5.39763 14.6024 1.66667 10 1.66667C5.39763 1.66667 1.66667 5.39763 1.66667 10C1.66667 14.6024 5.39763 18.3333 10 18.3333Z" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.66" />
+                                <path d="M10 13.3333V10" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.66" />
+                                <path d="M10 6.66667H10.0083" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.66" />
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-bold text-slate-900">Need to Know</h3>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div class="flex gap-4">
+                            <div class="w-8 h-8 bg-white rounded-full flex items-center justify-center shadow-sm text-lg border border-slate-100 flex-shrink-0">
+                                👔
+                            </div>
+                            <div>
+                                <div class="font-bold text-sm text-slate-900">Dress Code</div>
+                                <div class="text-sm text-slate-600">Fri: Business Casual • Sat: Casual</div>
+                            </div>
+                        </div>
+                        <div class="flex gap-4">
+                            <div class="w-8 h-8 bg-white rounded-full flex items-center justify-center shadow-sm text-lg border border-slate-100 flex-shrink-0">
+                                🚶
+                            </div>
+                            <div>
+                                <div class="font-bold text-sm text-slate-900">Getting Around</div>
+                                <div class="text-sm text-slate-600">All venues are within 10-15 min walk.</div>
+                            </div>
+                        </div>
+                        <div class="flex gap-4">
+                            <div class="w-8 h-8 bg-white rounded-full flex items-center justify-center shadow-sm text-lg border border-slate-100 flex-shrink-0">
+                                🍽️
+                            </div>
+                            <div>
+                                <div class="font-bold text-sm text-slate-900">Dietary Needs</div>
+                                <div class="text-sm text-slate-600">Accommodations arranged. Contact Mason for issues.</div>
+                            </div>
+                        </div>
+                        <div class="flex gap-4">
+                            <div class="w-8 h-8 bg-white rounded-full flex items-center justify-center shadow-sm text-lg border border-slate-100 flex-shrink-0">
+                                🌤️
+                            </div>
+                            <div>
+                                <div class="font-bold text-sm text-slate-900">Weather</div>
+                                <div class="text-sm text-slate-600">Avg High 62°F / Low 45°F. Bring layers.</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Column -->
+            <div class="lg:col-span-8 space-y-8 print-col-span-8">
+                
+                <!-- Friday Itinerary -->
+                <div class="flex flex-col gap-6">
+                    <div class="flex items-center gap-4">
+                        <div class="text-3xl font-bold text-blue-600">09</div>
+                        <div class="h-px bg-slate-200 flex-grow"></div>
+                        <div class="text-right">
+                            <div class="text-lg font-bold text-slate-900">Friday</div>
+                            <div class="text-sm text-slate-500">January 2026</div>
+                        </div>
+                    </div>
+
+                    <div class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden">
+                        <div class="p-6 md:p-8">
+                            <div class="flex flex-col md:flex-row md:justify-between md:items-start gap-4 mb-6">
+                                <div>
+                                    <span class="inline-block px-3 py-1 bg-blue-50 text-blue-600 text-xs font-medium rounded-full mb-3">
+                                        Evening Event
+                                    </span>
+                                    <h3 class="text-2xl font-bold text-slate-900 mb-2">Awards Dinner with Bingo</h3>
+                                    <div class="flex items-center gap-2 text-slate-600">
+                                        <svg class="w-4 h-4" fill="none" viewBox="0 0 16 16" stroke="currentColor">
+                                            <path d="M8 4V8L10.6667 9.33333" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.33" />
+                                            <path d="M8 14.6667C11.6819 14.6667 14.6667 11.6819 14.6667 8C14.6667 4.3181 11.6819 1.33333 8 1.33333C4.3181 1.33333 1.33333 4.3181 1.33333 8C1.33333 11.6819 4.3181 14.6667 8 14.6667Z" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.33" />
+                                        </svg>
+                                        <span>6:00 PM - 10:00 PM</span>
+                                    </div>
+                                </div>
+                                <div class="md:text-right">
+                                    <div class="font-bold text-slate-900">Tujague's Restaurant</div>
+                                    <div class="text-slate-500 text-sm">Patio Room (Private)</div>
+                                    <div class="text-slate-400 text-xs">429 Decatur St</div>
+                                </div>
+                            </div>
+
+                            <div class="grid md:grid-cols-2 gap-8">
+                                <div>
+                                    <div class="flex items-center gap-2 mb-4">
+                                        <svg class="w-4 h-4 text-slate-900" fill="none" viewBox="0 0 16 16" stroke="currentColor">
+                                            <path d="M2 1.33333V6C2 6.73333 2.6 7.33333 3.33333 7.33333H6C6.35362 7.33333 6.69276 7.19286 6.94281 6.94281C7.19286 6.69276 7.33333 6.35362 7.33333 6V1.33333" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.33" />
+                                            <path d="M4.66667 1.33333V14.6667" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.33" />
+                                            <path d="M14 10V1.33333C13.1159 1.33333 12.2681 1.68452 11.643 2.30964C11.0179 2.93477 10.6667 3.78261 10.6667 4.66667V8.66667C10.6667 9.4 11.2667 10 12 10H14ZM14 10V14.6667" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.33" />
+                                        </svg>
+                                        <span class="text-sm font-bold uppercase tracking-wider text-slate-900">Dinner Menu</span>
+                                    </div>
+                                    
+                                    <div class="space-y-4">
+                                        <div>
+                                            <div class="text-sm font-bold text-slate-900">First Course</div>
+                                            <div class="text-sm text-slate-600">Roasted Mushroom Crêpe with goat cheese & truffled mushroom salad</div>
+                                        </div>
+                                        <div>
+                                            <div class="text-sm font-bold text-slate-900">Second Course</div>
+                                            <div class="text-sm text-slate-600">Gumbo du Jour</div>
+                                        </div>
+                                        <div>
+                                            <div class="text-sm font-bold text-slate-900 mb-1">Main Course (Choice of)</div>
+                                            <ul class="text-sm text-slate-600 space-y-1 pl-3 border-l-2 border-slate-100">
+                                                <li><span class="font-semibold text-slate-700">6oz Filet</span> - New potato mash, haricot vert, sauce au poivre</li>
+                                                <li><span class="font-semibold text-slate-700">Shrimp and Grits</span> - NOLA BBQ sauce, stone ground grits</li>
+                                                <li><span class="font-semibold text-slate-700">Marinated Cauliflower Steak</span> - Roasted red pepper coulis, chickpea puree</li>
+                                            </ul>
+                                        </div>
+                                        <div>
+                                            <div class="text-sm font-bold text-slate-900">Dessert</div>
+                                            <div class="text-sm text-slate-600">Crème Brûlée</div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="flex flex-col gap-4">
+                                    <div class="bg-slate-50 rounded-xl p-5">
+                                        <h4 class="text-sm font-bold text-slate-900 uppercase tracking-wider mb-3">Bar Service</h4>
+                                        <div class="space-y-2 text-sm">
+                                            <div class="flex gap-2">
+                                                <span class="text-blue-600 font-medium whitespace-nowrap">6-8 PM</span>
+                                                <span class="text-slate-600">Complimentary open bar (House brands, beer, wine)</span>
+                                            </div>
+                                            <div class="flex gap-2">
+                                                <span class="text-blue-600 font-medium whitespace-nowrap">8-10 PM</span>
+                                                <span class="text-slate-600">Cash bar available</span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="bg-blue-50/50 border border-blue-100 rounded-xl p-5 flex gap-3">
+                                        <svg class="w-5 h-5 text-blue-600 flex-shrink-0" fill="none" viewBox="0 0 20 20" stroke="currentColor">
+                                            <path d="M10 18.3333C14.6024 18.3333 18.3333 14.6024 18.3333 10C18.3333 5.39763 14.6024 1.66667 10 1.66667C5.39763 1.66667 1.66667 5.39763 1.66667 10C1.66667 14.6024 5.39763 18.3333 10 18.3333Z" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.66" />
+                                            <path d="M10 13.3333V10" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.66" />
+                                            <path d="M10 6.66667H10.0083" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.66" />
+                                        </svg>
+                                        <div class="text-sm">
+                                            <span class="font-bold text-slate-700">Getting There: </span>
+                                            <span class="text-slate-600">0.6 miles from hotel. A 12-minute walk through the French Quarter or a quick 5-minute drive.</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Saturday Itinerary -->
+                <div class="flex flex-col gap-6">
+                    <div class="flex items-center gap-4">
+                        <div class="text-3xl font-bold text-blue-600">10</div>
+                        <div class="h-px bg-slate-200 flex-grow"></div>
+                        <div class="text-right">
+                            <div class="text-lg font-bold text-slate-900">Saturday</div>
+                            <div class="text-sm text-slate-500">January 2026</div>
+                        </div>
+                    </div>
+
+                    <div class="space-y-6">
+                        <!-- Morning Card -->
+                        <div class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden">
+                            <div class="p-6 md:p-8 flex flex-col gap-6">
+                                <div class="flex items-start gap-4">
+                                    <div class="w-12 h-12 bg-blue-50 rounded-xl flex items-center justify-center flex-shrink-0">
+                                        <svg class="w-6 h-6 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path d="M10 2V4" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" />
+                                            <path d="M14 2V4" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" />
+                                            <path d="M16 8C16.2652 8 16.5196 8.10536 16.7071 8.29289C16.8946 8.48043 17 8.73478 17 9V17C17 18.0609 16.5786 19.0783 15.8284 19.8284C15.0783 20.5786 14.0609 21 13 21H7C5.93913 21 4.92172 20.5786 4.17157 19.8284C3.42143 19.0783 3 18.0609 3 17V9C3 8.73478 3.10536 8.48043 3.29289 8.29289C3.48043 8.10536 3.73478 8 4 8H18C19.0609 8 20.0783 8.42143 20.8284 9.17157C21.5786 9.92172 22 10.9391 22 12C22 13.0609 21.5786 14.0783 20.8284 14.8284C20.0783 15.5786 19.0609 16 18 16H17" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" />
+                                            <path d="M6 2V4" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" />
+                                        </svg>
+                                    </div>
+                                    <div class="flex-grow flex flex-col md:flex-row md:justify-between">
+                                        <div>
+                                            <h3 class="text-xl font-bold text-slate-900">Brunch & Swag Drop</h3>
+                                            <div class="text-sm text-slate-500">9:00 AM - 11:00 AM</div>
+                                        </div>
+                                        <div class="md:text-right mt-2 md:mt-0">
+                                            <div class="font-bold text-slate-900">InterContinental</div>
+                                            <div class="text-sm text-slate-500">Marigny Room</div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="bg-slate-50 rounded-xl p-5 ml-0 md:ml-16">
+                                    <div class="text-sm font-bold text-slate-900 mb-3">Royal Street Breakfast & Down South Biscuit Bar</div>
+                                    <div class="grid grid-cols-2 gap-4 text-sm text-slate-600">
+                                        <ul class="space-y-1">
+                                            <li>Scrambled eggs</li>
+                                            <li>Andouille sausage</li>
+                                            <li>Crispy bacon</li>
+                                        </ul>
+                                        <ul class="space-y-1">
+                                            <li>Stone-ground grits</li>
+                                            <li>Biscuit station</li>
+                                            <li>Seasonal fruit</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Midday Card -->
+                        <div class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden">
+                            <div class="p-6 md:p-8 flex items-start gap-4">
+                                <div class="w-12 h-12 bg-blue-50 rounded-xl flex items-center justify-center flex-shrink-0">
+                                    <svg class="w-6 h-6 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path d="M16 21V19C16 17.9391 15.5786 16.9217 14.8284 16.1716C14.0783 15.4214 13.0609 15 12 15H6C4.93913 15 3.92172 15.4214 3.17157 16.1716C2.42143 16.9217 2 17.9391 2 19V21" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" />
+                                        <path d="M16 3.128C16.8578 3.35037 17.6174 3.85126 18.1597 4.55206C18.702 5.25286 18.9962 6.11389 18.9962 7C18.9962 7.88611 18.702 8.74714 18.1597 9.44794C17.6174 10.1487 16.8578 10.6496 16 10.872" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" />
+                                        <path d="M22 21V19C21.9993 18.1137 21.7044 17.2528 21.1614 16.5523C20.6184 15.8519 19.8581 15.3516 19 15.13" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" />
+                                        <path d="M9 11C11.2091 11 13 9.20914 13 7C13 4.79086 11.2091 3 9 3C6.79086 3 5 4.79086 5 7C5 9.20914 6.79086 11 9 11Z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" />
+                                    </svg>
+                                </div>
+                                <div class="flex-grow">
+                                    <div class="flex flex-col md:flex-row md:justify-between mb-2">
+                                        <div>
+                                            <h3 class="text-xl font-bold text-slate-900">Level Up: The 2026 Game Plan</h3>
+                                            <div class="text-sm text-slate-500">11:15 AM - 1:00 PM</div>
+                                        </div>
+                                        <div class="md:text-right mt-2 md:mt-0">
+                                            <div class="font-bold text-slate-900">InterContinental</div>
+                                            <div class="text-sm text-slate-500">Treme Room (3rd Floor)</div>
+                                        </div>
+                                    </div>
+                                    <p class="text-sm text-slate-600">Strategic planning session for the upcoming year. Light refreshments provided.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Evening Card (Steamboat) -->
+                        <div class="bg-slate-900 rounded-2xl shadow-lg border border-slate-800 overflow-hidden relative">
+                            <!-- Background Decoration -->
+                            <div class="absolute top-0 right-0 w-64 h-64 bg-blue-600/20 blur-3xl rounded-full transform translate-x-1/3 -translate-y-1/3 pointer-events-none"></div>
+                            
+                            <div class="p-6 md:p-8 relative z-10">
+                                <div class="flex flex-col md:flex-row justify-between items-start mb-6">
+                                    <div>
+                                        <span class="inline-flex items-center gap-1.5 px-3 py-1 bg-white/10 border border-white/10 rounded-full text-blue-200 text-xs mb-3">
+                                            <svg class="w-3 h-3" fill="none" viewBox="0 0 12 12" stroke="currentColor">
+                                                <path d="M6 5.09448V6.99998" stroke-linecap="round" stroke-linejoin="round" />
+                                                <path d="M6 1V2.5" stroke-linecap="round" stroke-linejoin="round" />
+                                                <path d="M9.5 6.5V3.5C9.5 3.23478 9.39464 2.98043 9.20711 2.79289C9.01957 2.60536 8.76522 2.5 8.5 2.5H3.5C3.23478 2.5 2.98043 2.60536 2.79289 2.79289C2.60536 2.98043 2.5 3.23478 2.5 3.5V6.5" stroke-linecap="round" stroke-linejoin="round" />
+                                                <path d="M9.69001 9.99999C10.2278 9.09228 10.5079 8.05505 10.5 6.99999L6.40601 5.18049C6.27819 5.1237 6.13987 5.09436 6.00001 5.09436C5.86014 5.09436 5.72183 5.1237 5.59401 5.18049L1.50001 6.99999C1.47686 8.42183 1.97686 9.80262 2.90501 10.88" stroke-linecap="round" stroke-linejoin="round" />
+                                                <path d="M1 10.5C1.3 10.75 1.6 11 2.25 11C3.5 11 3.5 10 4.75 10C5.4 10 5.7 10.25 6 10.5C6.3 10.75 6.6 11 7.25 11C8.5 11 8.5 10 9.75 10C10.4 10 10.7 10.25 11 10.5" stroke-linecap="round" stroke-linejoin="round" />
+                                            </svg>
+                                            Highlight Event
+                                        </span>
+                                        <h3 class="text-2xl font-bold text-white mb-1">Steamboat NATCHEZ Cruise</h3>
+                                        <div class="text-blue-200 text-sm">Captain's Salon (Private)</div>
+                                    </div>
+                                    <div class="mt-4 md:mt-0 md:text-right">
+                                        <div class="text-3xl font-bold text-white">2:30 PM</div>
+                                        <div class="text-blue-300 text-sm">Boarding starts at 2:00 PM</div>
+                                    </div>
+                                </div>
+
+                                <div class="grid md:grid-cols-2 gap-8 border-t border-white/10 pt-6">
+                                    <div>
+                                        <h4 class="text-xs font-bold text-white uppercase tracking-wider mb-4">French Quarter Fête Menu</h4>
+                                        <div class="space-y-4">
+                                            <div>
+                                                <div class="text-sm font-medium text-white mb-1">Starters</div>
+                                                <div class="text-sm text-slate-400">Crudité platter, charcuterie, domestic cheese board, Chicken & Sausage Gumbo</div>
+                                            </div>
+                                            <div>
+                                                <div class="text-sm font-medium text-white mb-1">Mains</div>
+                                                <div class="text-sm text-slate-400">Blackened/Fried Fish, Bayou Seafood Pasta, Carved Top Round Beef</div>
+                                            </div>
+                                            <div>
+                                                <div class="text-sm font-medium text-white mb-1">Dessert</div>
+                                                <div class="text-sm text-slate-400">Bananas Foster Ice Cream</div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="flex flex-col justify-between">
+                                        <div>
+                                            <h4 class="text-xs font-bold text-white uppercase tracking-wider mb-2">Beverages</h4>
+                                            <p class="text-sm text-slate-400 mb-6">2.5 hour open bar included (Beer, wine, standard call brands), plus coffee and soft drinks.</p>
+                                        </div>
+                                        
+                                        <div class="bg-white/5 border border-white/10 rounded-xl p-4">
+                                            <div class="text-sm font-bold text-white mb-1">Logistics:</div>
+                                            <p class="text-sm text-blue-200">
+                                                600 Decatur St. Please arrive by 2:00 PM. The boat departs promptly at 2:30 PM. 15 min walk from hotel.
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="border-t border-slate-200 pt-8 mt-8 pb-12">
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
+                <div>
+                    <h4 class="font-bold text-slate-900 mb-2">Questions?</h4>
+                    <div class="flex flex-col gap-2">
+                        <div class="flex items-center gap-2 text-slate-600">
+                            <svg class="w-4 h-4 text-blue-600" fill="none" viewBox="0 0 16 16" stroke="currentColor">
+                                <path d="M10.6667 14V12.6667C10.6667 11.9594 10.3857 11.2811 9.88562 10.781C9.38552 10.281 8.70724 10 8 10H4C3.29276 10 2.61448 10.281 2.11438 10.781C1.61428 11.2811 1.33333 11.9594 1.33333 12.6667V14" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.33" />
+                                <path d="M10.6667 2.08529C11.2385 2.23353 11.7449 2.56746 12.1065 3.03466C12.468 3.50186 12.6641 4.07588 12.6641 4.66662C12.6641 5.25736 12.468 5.83138 12.1065 6.29858C11.7449 6.76578 11.2385 7.09971 10.6667 7.24795" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.33" />
+                                <path d="M14.6667 13.9999V12.6666C14.6662 12.0757 14.4696 11.5018 14.1076 11.0348C13.7456 10.5678 13.2388 10.2343 12.6667 10.0866" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.33" />
+                                <path d="M6 7.33333C7.47276 7.33333 8.66667 6.13943 8.66667 4.66667C8.66667 3.19391 7.47276 2 6 2C4.52724 2 3.33333 3.19391 3.33333 4.66667C3.33333 6.13943 4.52724 7.33333 6 7.33333Z" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.33" />
+                            </svg>
+                            <span class="text-sm">Mason Vospette, Sales Support</span>
+                        </div>
+                        
+                        <div class="flex items-center gap-4">
+                            <div class="flex items-center gap-2 text-slate-600 hover:text-blue-600 cursor-pointer transition-colors">
+                                <svg class="w-4 h-4" fill="none" viewBox="0 0 16 16" stroke="currentColor">
+                                    <path d="M9.22133 11.0453C9.35902 11.1086 9.51413 11.123 9.66113 11.0863C9.80812 11.0496 9.93822 10.9639 10.03 10.8433L10.2667 10.5333C10.3909 10.3677 10.5519 10.2333 10.737 10.1408C10.9222 10.0482 11.1263 10 11.3333 10H13.3333C13.687 10 14.0261 10.1405 14.2761 10.3905C14.5262 10.6406 14.6667 10.9797 14.6667 11.3333V13.3333C14.6667 13.687 14.5262 14.0261 14.2761 14.2761C14.0261 14.5262 13.687 14.6667 13.3333 14.6667C10.1507 14.6667 7.09849 13.4024 4.84805 11.1519C2.59762 8.90151 1.33333 5.84926 1.33333 2.66667C1.33333 2.31304 1.47381 1.97391 1.72386 1.72386C1.97391 1.47381 2.31304 1.33333 2.66667 1.33333H4.66667C5.02029 1.33333 5.35943 1.47381 5.60948 1.72386C5.85952 1.97391 6 2.31304 6 2.66667V4.66667C6 4.87366 5.95181 5.07781 5.85924 5.26295C5.76667 5.44809 5.63226 5.60914 5.46667 5.73333L5.15467 5.96733C5.03228 6.06078 4.94601 6.19372 4.91053 6.34357C4.87504 6.49341 4.89252 6.65092 4.96 6.78933C5.87112 8.63991 7.36962 10.1365 9.22133 11.0453Z" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.33" />
+                                </svg>
+                                <span class="text-sm">847-730-0777</span>
+                            </div>
+                            
+                            <div class="flex items-center gap-2 text-slate-600 hover:text-blue-600 cursor-pointer transition-colors">
+                                <svg class="w-4 h-4" fill="none" viewBox="0 0 16 16" stroke="currentColor">
+                                    <path d="M14.6667 4.66667L8.67267 8.48467C8.46926 8.60281 8.23822 8.66504 8.003 8.66504C7.76778 8.66504 7.53674 8.60281 7.33333 8.48467L1.33333 4.66667" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.33" />
+                                    <path d="M13.3333 2.66667H2.66667C1.93029 2.66667 1.33333 3.26362 1.33333 4V12C1.33333 12.7364 1.93029 13.3333 2.66667 13.3333H13.3333C14.0697 13.3333 14.6667 12.7364 14.6667 12V4C14.6667 3.26362 14.0697 2.66667 13.3333 2.66667Z" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.33" />
+                                </svg>
+                                <span class="text-sm">Email Mason</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="text-right">
+                    <div class="text-xs text-slate-400 mb-1">© 2026 Guard Home Warranty</div>
+                    <div class="text-xs text-slate-400">January Sales Launch Party • New Orleans</div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Print Button -->
+    <button
+        id="print-btn"
+        onclick="window.print()"
+        class="fixed bottom-8 right-8 z-50 bg-blue-600 hover:bg-blue-700 text-white p-4 rounded-full shadow-xl transition-all hover:scale-105 active:scale-95 group flex items-center gap-2"
+        aria-label="Print Flyer"
+    >
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6">
+            <polyline points="6 9 6 2 18 2 18 9"></polyline>
+            <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path>
+            <rect x="6" y="14" width="12" height="8"></rect>
+        </svg>
+        <span class="max-w-0 overflow-hidden group-hover:max-w-xs transition-all duration-300 whitespace-nowrap">
+            Print / Save as PDF
+        </span>
+    </button>
+
+</body>
+</html>
