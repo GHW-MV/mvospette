@@ -18,6 +18,21 @@ API_PORT="${API_PORT:-8000}"
 UI_HOST="${UI_HOST:-127.0.0.1}"
 UI_PORT="${UI_PORT:-8501}"
 
+# Auto-generate API token if not provided, using md5(hostname+timestamp) for quick testing.
+if [ -z "${TERRITORY_API_TOKEN:-}" ]; then
+  if command -v md5sum >/dev/null 2>&1; then
+    TERRITORY_API_TOKEN="$(printf '%s' "$(hostname)-$(date +%s)" | md5sum | awk '{print $1}')"
+  else
+    TERRITORY_API_TOKEN="$("$PYTHON_BIN" - <<'PY'
+import hashlib, socket, time
+print(hashlib.md5(f"{socket.gethostname()}-{int(time.time())}".encode()).hexdigest())
+PY
+)"
+  fi
+  echo "Generated TERRITORY_API_TOKEN=${TERRITORY_API_TOKEN}"
+fi
+export TERRITORY_API_TOKEN
+
 if ! command -v "$PYTHON_BIN" >/dev/null 2>&1; then
   echo "Python not found at $PYTHON_BIN. Set PYTHON_BIN to your venv python (e.g., /root/.pyenv/versions/territory-env/bin/python)."
   exit 1
