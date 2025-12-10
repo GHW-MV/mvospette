@@ -21,6 +21,10 @@ mvospette.com {
     handle_path /app* {
         redir https://app.mvospette.com{uri} 302
     }
+    handle_path /email-builder* {
+        try_files {path} /email-builder/index.html
+        file_server
+    }
     handle_path /cloudflare_login* {
         rewrite * /cloudflare_login.html
         file_server
