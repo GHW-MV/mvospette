@@ -323,11 +323,11 @@
           const res = await fetch('https://app.mvospette.com/api/health', {
             headers: { Authorization: `Bearer ${token}` },
           });
-          if (!res.ok) throw new Error('Invalid token');
+          if (!res.ok) throw new Error(`Status ${res.status}`);
           status.textContent = 'Validated. Unlocking...';
           unlock(token);
         } catch (err) {
-          status.textContent = 'Could not validate. Check token or try again.';
+          status.textContent = `Could not validate. ${err?.message || ''}`;
           localStorage.removeItem(storageKey);
         }
       };

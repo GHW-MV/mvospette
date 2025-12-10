@@ -8,6 +8,7 @@ from typing import Optional, Tuple
 
 import pandas as pd
 from fastapi import Depends, FastAPI, HTTPException, Header, Query, Response, status
+from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import FileResponse, JSONResponse
 
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -19,6 +20,22 @@ app = FastAPI(title="Territory Intelligence API", version="0.1.0")
 DATA_FRAME: Optional[pd.DataFrame] = None
 logger = logging.getLogger("territory_api")
 logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(message)s")
+
+# CORS to allow landing page (mvospette.com) to call app subdomain.
+ALLOWED_ORIGINS = [
+    "https://mvospette.com",
+    "https://app.mvospette.com",
+    "http://localhost:8000",
+    "http://localhost:8501",
+]
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=ALLOWED_ORIGINS,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 
 def get_token() -> str:
@@ -99,7 +116,7 @@ def startup() -> None:
     DATA_FRAME = load_data()
 
 
-@app.get("/health")
+@app.get("/health", dependencies=[Depends(auth_dependency)])
 def health() -> dict:
     global DATA_FRAME
     count = len(DATA_FRAME) if DATA_FRAME is not None else 0
