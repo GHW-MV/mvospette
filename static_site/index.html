@@ -13,21 +13,15 @@
   </style>
 </head>
 <body class="bg-slate-50 text-slate-900">
-  <!-- Access Gate -->
-  <div id="gate-overlay" class="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/80 backdrop-blur-sm">
-    <div class="bg-white rounded-2xl shadow-2xl w-full max-w-md p-6 space-y-4 border border-slate-200">
-      <div class="space-y-1">
-        <p class="text-xs uppercase tracking-[0.25em] text-slate-500 font-semibold">Access required</p>
-        <h1 class="text-2xl font-bold text-slate-900">Enter API key</h1>
-        <p class="text-sm text-slate-600">Provide a bearer token. We will try to verify it against the API before unlocking.</p>
-      </div>
-      <form id="gate-form" class="space-y-3">
-        <label class="block text-sm font-semibold text-slate-700">API Key</label>
-        <input id="gate-token" type="password" class="w-full rounded-xl border border-slate-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-slate-900 focus:border-slate-900" placeholder="Paste your token" required>
-        <div class="flex items-center justify-between text-xs text-slate-500">
-          <span id="gate-status">Token is stored locally for this browser.</span>
-        </div>
-        <button type="submit" class="w-full bg-slate-900 text-white font-semibold rounded-xl py-2.5 hover:bg-slate-800 transition">Unlock</button>
+  <!-- Simple Access Gate -->
+  <div id="gate-overlay" class="fixed inset-0 z-50 flex items-center justify-center bg-black/70">
+    <div class="bg-white rounded-xl shadow-lg w-full max-w-md p-6 space-y-3 border border-slate-200">
+      <h1 class="text-xl font-bold text-slate-900">Enter API key</h1>
+      <p class="text-sm text-slate-600">Paste your bearer token to unlock the site.</p>
+      <form id="gate-form" class="space-y-2">
+        <input id="gate-token" type="password" class="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-slate-900 focus:border-slate-900" placeholder="Token" required>
+        <p id="gate-status" class="text-xs text-slate-500">Stored locally for this browser only.</p>
+        <button type="submit" class="w-full bg-slate-900 text-white font-semibold rounded-lg py-2 hover:bg-slate-800 transition">Unlock</button>
       </form>
     </div>
   </div>
@@ -302,7 +296,6 @@
       const status = document.getElementById('gate-status');
       const shell = document.getElementById('content-shell');
       const storageKey = 'mv_api_token';
-      const submitBtn = document.querySelector('#gate-form button[type="submit"]');
       const routesList = document.getElementById('routes-list');
       const routesSelect = document.getElementById('route-target');
       const routeSlug = document.getElementById('route-slug');
@@ -320,24 +313,18 @@
 
       const validate = async (token) => {
         status.textContent = 'Validating...';
-        submitBtn.disabled = true;
         try {
           const res = await fetch('https://app.mvospette.com/api/health', {
-            method: 'GET',
             headers: { Authorization: `Bearer ${token}` },
             cache: 'no-cache',
           });
-          if (!res.ok) {
-            throw new Error(`Status ${res.status}`);
-          }
+          if (!res.ok) throw new Error(`Status ${res.status}`);
           status.textContent = 'Validated. Unlocking...';
           unlock(token);
         } catch (err) {
-          status.textContent = `Could not validate. ${err?.message || 'Invalid token.'}`;
+          status.textContent = `Invalid token. ${err?.message || ''}`;
           localStorage.removeItem(storageKey);
-          submitBtn.disabled = false;
         }
-        submitBtn.disabled = false;
       };
 
       form.addEventListener('submit', (e) => {
