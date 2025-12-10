@@ -16,8 +16,10 @@ mvospette.com {
         file_server
     }
     handle_path /territory_map* {
-        rewrite * /app
-        file_server
+        redir https://app.mvospette.com{uri} 302
+    }
+    handle_path /app* {
+        redir https://app.mvospette.com{uri} 302
     }
     handle_path /cloudflare_login* {
         rewrite * /cloudflare_login.html
