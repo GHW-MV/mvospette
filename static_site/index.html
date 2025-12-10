@@ -302,6 +302,7 @@
       const status = document.getElementById('gate-status');
       const shell = document.getElementById('content-shell');
       const storageKey = 'mv_api_token';
+      const submitBtn = document.querySelector('#gate-form button[type="submit"]');
       const routesList = document.getElementById('routes-list');
       const routesSelect = document.getElementById('route-target');
       const routeSlug = document.getElementById('route-slug');
@@ -319,17 +320,24 @@
 
       const validate = async (token) => {
         status.textContent = 'Validating...';
+        submitBtn.disabled = true;
         try {
           const res = await fetch('https://app.mvospette.com/api/health', {
+            method: 'GET',
             headers: { Authorization: `Bearer ${token}` },
+            cache: 'no-cache',
           });
-          if (!res.ok) throw new Error(`Status ${res.status}`);
+          if (!res.ok) {
+            throw new Error(`Status ${res.status}`);
+          }
           status.textContent = 'Validated. Unlocking...';
           unlock(token);
         } catch (err) {
-          status.textContent = `Could not validate. ${err?.message || ''}`;
+          status.textContent = `Could not validate. ${err?.message || 'Invalid token.'}`;
           localStorage.removeItem(storageKey);
+          submitBtn.disabled = false;
         }
+        submitBtn.disabled = false;
       };
 
       form.addEventListener('submit', (e) => {
