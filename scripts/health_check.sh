@@ -27,4 +27,9 @@ fail=0
 check "API" "$API_URL" || fail=1
 check "UI" "$UI_URL" || fail=1
 
+# Optional alert via notify_email.py if configured
+if [ "$fail" -ne 0 ] && [ -n "${MAIL_TO:-}" ]; then
+  python -m scripts.notify_email "Health check failed" "API/ UI health check failed on $(hostname) at $(date -Is)"
+fi
+
 exit $fail

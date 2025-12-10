@@ -120,7 +120,23 @@ def startup() -> None:
 def health() -> dict:
     global DATA_FRAME
     count = len(DATA_FRAME) if DATA_FRAME is not None else 0
-    return {"status": "ok", "rows": count, "data_path": str(DEFAULT_DATA_PATH)}
+    updated_at = None
+    path_used = None
+    if DEFAULT_DATA_PATH.exists():
+        path_used = DEFAULT_DATA_PATH
+    elif CSV_FALLBACK.exists():
+        path_used = CSV_FALLBACK
+    if path_used:
+        try:
+            updated_at = path_used.stat().st_mtime
+        except Exception:
+            updated_at = None
+    return {
+        "status": "ok",
+        "rows": count,
+        "data_path": str(DEFAULT_DATA_PATH),
+        "updated_at": updated_at,
+    }
 
 
 @app.get("/assignments")

@@ -38,6 +38,12 @@ mvospette.com {
 }
 
 app.mvospette.com {
+    # Bearer auth via env (TERRITORY_API_TOKEN). Requests without/with wrong token get 401.
+    @missing_auth not header Authorization
+    @bad_auth not header Authorization "Bearer {env.TERRITORY_API_TOKEN}"
+    respond @missing_auth 401
+    respond @bad_auth 401
+
     # API first so /api/* is proxied correctly
     handle_path /api/* {
         reverse_proxy 127.0.0.1:8000
