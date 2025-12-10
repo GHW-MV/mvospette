@@ -8,6 +8,7 @@ LOG_DIR="$ROOT/logs"
 mkdir -p "$LOG_DIR"
 
 PYTHON_BIN="${PYTHON_BIN:-python3}"
+export PYTHONPATH="${PYTHONPATH:-$ROOT}"
 
 ZIP_MASTER="${ZIP_MASTER:-$ROOT/static/uszips.csv}"
 REP_ACTIVITY="${REP_ACTIVITY:-$ROOT/static/Zipcodes_Deal_Count_By_Rep.csv}"

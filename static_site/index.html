@@ -26,7 +26,6 @@
         <input id="gate-token" type="password" class="w-full rounded-xl border border-slate-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-slate-900 focus:border-slate-900" placeholder="Paste your token" required>
         <div class="flex items-center justify-between text-xs text-slate-500">
           <span id="gate-status">Token is stored locally for this browser.</span>
-          <button type="button" id="gate-skip" class="text-slate-700 hover:text-slate-900 font-semibold">Skip</button>
         </div>
         <button type="submit" class="w-full bg-slate-900 text-white font-semibold rounded-xl py-2.5 hover:bg-slate-800 transition">Unlock</button>
       </form>
@@ -51,6 +50,9 @@
           <a href="#focus" class="hover:text-slate-900">Focus</a>
           <a href="#apps" class="hover:text-slate-900">Apps</a>
           <a href="#workspace" class="hover:text-slate-900">Workspace</a>
+          <a href="#journal" class="hover:text-slate-900">Journal</a>
+          <a href="#future" class="hover:text-slate-900">Future</a>
+          <a href="#admin" class="hover:text-slate-900">Admin</a>
           <a href="#contact" class="hover:text-slate-900">Contact</a>
         </nav>
         <a href="/app" class="text-sm font-semibold text-white bg-slate-900 px-4 py-2 rounded-full hover:bg-slate-800">Open Territory</a>
@@ -171,6 +173,119 @@
         </div>
       </section>
 
+      <!-- Journal -->
+      <section id="journal" class="space-y-4">
+        <div class="flex items-center justify-between">
+          <div>
+            <p class="text-xs tracking-[0.2em] uppercase text-slate-500 font-semibold">Journal</p>
+            <h2 class="text-2xl font-bold text-slate-900">Build log</h2>
+          </div>
+        </div>
+        <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-5 space-y-3">
+          <div class="flex items-center justify-between text-sm text-slate-500">
+            <span>2025-12-09</span>
+            <span class="text-xs bg-slate-100 text-slate-700 px-2 py-1 rounded-full">Ops</span>
+          </div>
+          <p class="text-sm text-slate-700">Hardened the auth gate on landing, separated start/stop of the web stack from pipeline runs, and reserved slots for Cloudflare login/denial pages.</p>
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-3 text-sm text-slate-700">
+            <div class="p-3 rounded-xl bg-slate-50 border border-slate-200">
+              <div class="font-semibold text-slate-900">What changed</div>
+              <ul class="mt-1 space-y-1">
+                <li>• Mandatory token validation.</li>
+                <li>• Start/stop web without compute.</li>
+              </ul>
+            </div>
+            <div class="p-3 rounded-xl bg-slate-50 border border-slate-200">
+              <div class="font-semibold text-slate-900">Next</div>
+              <ul class="mt-1 space-y-1">
+                <li>• Hook journal to markdown feed.</li>
+                <li>• Ship admin actions via API.</li>
+              </ul>
+            </div>
+            <div class="p-3 rounded-xl bg-slate-50 border border-slate-200">
+              <div class="font-semibold text-slate-900">Checks</div>
+              <ul class="mt-1 space-y-1">
+                <li>• API 200 /health.</li>
+                <li>• TLS good for root + app.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Future roadmap -->
+      <section id="future" class="space-y-4">
+        <div class="flex items-center justify-between">
+          <div>
+            <p class="text-xs tracking-[0.2em] uppercase text-slate-500 font-semibold">Future</p>
+            <h2 class="text-2xl font-bold text-slate-900">Upcoming features</h2>
+          </div>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <article class="bg-white rounded-2xl shadow-sm border border-slate-200 p-5">
+            <p class="text-xs font-semibold text-blue-600 uppercase tracking-wide">Content</p>
+            <h3 class="text-lg font-bold text-slate-900">HTML docs hub</h3>
+            <p class="text-sm text-slate-700">Friendly URLs (e.g., /sales_flyer) mapping to static HTML variants.</p>
+          </article>
+          <article class="bg-white rounded-2xl shadow-sm border border-slate-200 p-5">
+            <p class="text-xs font-semibold text-blue-600 uppercase tracking-wide">Admin</p>
+            <h3 class="text-lg font-bold text-slate-900">Component manager</h3>
+            <p class="text-sm text-slate-700">Upload/enable/disable site components (HTML/CSS/JS) via a protected admin view.</p>
+          </article>
+          <article class="bg-white rounded-2xl shadow-sm border border-slate-200 p-5">
+            <p class="text-xs font-semibold text-blue-600 uppercase tracking-wide">Auth</p>
+            <h3 class="text-lg font-bold text-slate-900">Cloudflare pages</h3>
+            <p class="text-sm text-slate-700">Custom login and denial endpoints for Cloudflare access flows.</p>
+          </article>
+        </div>
+      </section>
+
+      <!-- Admin placeholder -->
+      <section id="admin" class="space-y-3">
+        <div class="flex items-center justify-between">
+          <div>
+            <p class="text-xs tracking-[0.2em] uppercase text-slate-500 font-semibold">Admin</p>
+            <h2 class="text-2xl font-bold text-slate-900">Site controls</h2>
+          </div>
+        </div>
+        <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-5 space-y-3">
+          <p class="text-sm text-slate-700">Future admin actions will live here: upload static HTML/CSS/JS, toggle visibility, and manage access gates.</p>
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-3 text-sm text-slate-700">
+            <div class="p-3 rounded-xl bg-slate-50 border border-slate-200">
+              <div class="font-semibold text-slate-900">Static content</div>
+              <p class="text-sm text-slate-700">Add/remove HTML pages and assets.</p>
+            </div>
+            <div class="p-3 rounded-xl bg-slate-50 border border-slate-200">
+              <div class="font-semibold text-slate-900">Styling</div>
+              <p class="text-sm text-slate-700">Upload CSS variants; toggle themes.</p>
+            </div>
+            <div class="p-3 rounded-xl bg-slate-50 border border-slate-200">
+              <div class="font-semibold text-slate-900">Scripts</div>
+              <p class="text-sm text-slate-700">Manage JS utilities; enable/disable.</p>
+            </div>
+          </div>
+          <div class="border border-slate-200 rounded-xl p-4 space-y-2">
+            <div class="flex items-center justify-between">
+              <div>
+                <p class="text-xs uppercase tracking-[0.2em] text-slate-500 font-semibold">Routes</p>
+                <h3 class="text-sm font-bold text-slate-900">Approved routes</h3>
+              </div>
+              <button id="refresh-routes" class="text-xs font-semibold text-slate-700 hover:text-slate-900">Refresh</button>
+            </div>
+            <div id="routes-list" class="text-sm text-slate-700 grid grid-cols-1 md:grid-cols-2 gap-2"></div>
+            <div class="pt-2 border-t border-slate-200">
+              <p class="text-xs text-slate-500 mb-2">Propose a new route (must map to an existing approved file).</p>
+              <div class="grid grid-cols-1 md:grid-cols-3 gap-2">
+                <input id="route-slug" type="text" placeholder="/new_route" class="rounded-lg border border-slate-300 px-3 py-2 text-sm focus:ring-2 focus:ring-slate-900 focus:border-slate-900">
+                <select id="route-target" class="rounded-lg border border-slate-300 px-3 py-2 text-sm focus:ring-2 focus:ring-slate-900 focus:border-slate-900"></select>
+                <button id="route-validate" class="rounded-lg bg-slate-900 text-white text-sm font-semibold px-3 py-2 hover:bg-slate-800">Validate</button>
+              </div>
+              <p id="route-status" class="text-xs text-slate-600 mt-2"></p>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <!-- Contact -->
       <section id="contact" class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6">
         <div class="flex items-center justify-between mb-4">
@@ -205,10 +320,23 @@
       const overlay = document.getElementById('gate-overlay');
       const form = document.getElementById('gate-form');
       const tokenInput = document.getElementById('gate-token');
-      const skipBtn = document.getElementById('gate-skip');
       const status = document.getElementById('gate-status');
       const shell = document.getElementById('content-shell');
       const storageKey = 'mv_api_token';
+      const routesList = document.getElementById('routes-list');
+      const routesSelect = document.getElementById('route-target');
+      const routeSlug = document.getElementById('route-slug');
+      const routeValidate = document.getElementById('route-validate');
+      const routeStatus = document.getElementById('route-status');
+      const refreshRoutes = document.getElementById('refresh-routes');
+
+      const approvedRoutes = [
+        { slug: '/sales_flyer', target: '/sales_index.html' },
+        { slug: '/territory_map', target: '/app' },
+        { slug: '/cloudflare_login', target: '/cloudflare_login.html' },
+        { slug: '/cloudflare_denied', target: '/cloudflare_denied.html' },
+        { slug: '/', target: '/' }
+      ];
 
       const unlock = (token) => {
         localStorage.setItem(storageKey, token);
@@ -227,6 +355,7 @@
           unlock(token);
         } catch (err) {
           status.textContent = 'Could not validate. Check token or try again.';
+          localStorage.removeItem(storageKey);
         }
       };
 
@@ -240,20 +369,47 @@
         validate(token);
       });
 
-      skipBtn.addEventListener('click', () => {
-        const token = tokenInput.value.trim();
-        if (!token) {
-          status.textContent = 'Provide a token to continue.';
-          return;
-        }
-        status.textContent = 'Bypassing validation...';
-        unlock(token);
-      });
-
       const saved = localStorage.getItem(storageKey);
       if (saved) {
         validate(saved);
       }
+
+      const renderRoutes = () => {
+        routesList.innerHTML = approvedRoutes.map(r =>
+          `<div class="rounded-lg border border-slate-200 px-3 py-2 flex items-center justify-between">
+            <span class="text-slate-800 font-semibold">${r.slug}</span>
+            <span class="text-xs text-slate-500">${r.target}</span>
+          </div>`
+        ).join('');
+        routesSelect.innerHTML = approvedRoutes.map(r => `<option value="${r.target}">${r.target}</option>`).join('');
+      };
+
+      const isApprovedTarget = (target) => approvedRoutes.some(r => r.target === target);
+      const cleanSlug = (slug) => {
+        const s = slug.trim();
+        if (!s.startsWith('/')) return null;
+        return s.replace(/[^a-zA-Z0-9_\\-/]/g, '');
+      };
+
+      routeValidate.addEventListener('click', () => {
+        const slug = cleanSlug(routeSlug.value || '');
+        const target = routesSelect.value;
+        if (!slug) {
+          routeStatus.textContent = 'Slug must start with "/" and contain only letters, numbers, dashes, underscores, or slashes.';
+          routeStatus.className = 'text-xs text-red-600 mt-2';
+          return;
+        }
+        if (!isApprovedTarget(target)) {
+          routeStatus.textContent = 'Target must be an approved resource.';
+          routeStatus.className = 'text-xs text-red-600 mt-2';
+          return;
+        }
+        routeStatus.textContent = `Route valid: ${slug} -> ${target}. Server update required to take effect.`;
+        routeStatus.className = 'text-xs text-emerald-600 mt-2';
+      });
+
+      refreshRoutes.addEventListener('click', renderRoutes);
+      renderRoutes();
     })();
   </script>
 </body>

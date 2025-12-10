@@ -10,6 +10,24 @@ mvospette.com {
     encode gzip zstd
     file_server
 
+    # Friendly routes for HTML resources
+    handle_path /sales_flyer* {
+        rewrite * /sales_index.html
+        file_server
+    }
+    handle_path /territory_map* {
+        rewrite * /app
+        file_server
+    }
+    handle_path /cloudflare_login* {
+        rewrite * /cloudflare_login.html
+        file_server
+    }
+    handle_path /cloudflare_denied* {
+        rewrite * /cloudflare_denied.html
+        file_server
+    }
+
     header {
         Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
         X-Frame-Options "SAMEORIGIN"
