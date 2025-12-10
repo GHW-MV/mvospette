@@ -371,7 +371,7 @@
       const cleanSlug = (slug) => {
         const s = slug.trim();
         if (!s.startsWith('/')) return null;
-        return s.replace(/[^a-zA-Z0-9_\\-/]/g, '');
+        return s.replace(/[^a-zA-Z0-9_/-]/g, '');
       };
 
       routeValidate.addEventListener('click', () => {
