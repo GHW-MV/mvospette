@@ -1,0 +1,9 @@
+{
+  "routes": [
+    { "slug": "/sales_flyer", "target": "/sales_index.html", "label": "Sales Flyer" },
+    { "slug": "/territory_map", "target": "/app", "label": "Territory App" },
+    { "slug": "/cloudflare_login", "target": "/cloudflare_login.html", "label": "Cloudflare Login" },
+    { "slug": "/cloudflare_denied", "target": "/cloudflare_denied.html", "label": "Cloudflare Denied" },
+    { "slug": "/", "target": "/", "label": "Home" }
+  ]
+}

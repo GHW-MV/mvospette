@@ -1,0 +1,16 @@
+[Unit]
+Description=Territory Streamlit UI
+After=network.target
+
+[Service]
+Type=simple
+WorkingDirectory=/opt/mvospette
+EnvironmentFile=/etc/mvospette/secret.env
+Environment=PYTHONPATH=/opt/mvospette
+ExecStart=/root/.pyenv/versions/territory-env/bin/python -m streamlit run /opt/mvospette/src/streamlit_app.py --server.address 127.0.0.1 --server.port 8501
+Restart=on-failure
+RestartSec=3
+User=root
+
+[Install]
+WantedBy=multi-user.target

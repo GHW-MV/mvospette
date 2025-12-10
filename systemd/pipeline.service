@@ -1,0 +1,14 @@
+[Unit]
+Description=Territory Pipeline Refresh
+After=network.target
+
+[Service]
+Type=oneshot
+WorkingDirectory=/opt/mvospette
+EnvironmentFile=/etc/mvospette/secret.env
+Environment=PYTHONPATH=/opt/mvospette
+ExecStart=/root/.pyenv/versions/territory-env/bin/python -m src.territory_pipeline --zip-master static/uszips.csv --rep-activity static/Zipcodes_Deal_Count_By_Rep.csv --db-path data/territory.db --export-path data/territory_assignments.csv
+User=root
+
+[Install]
+WantedBy=multi-user.target

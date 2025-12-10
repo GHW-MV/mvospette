@@ -309,13 +309,7 @@
       const routeStatus = document.getElementById('route-status');
       const refreshRoutes = document.getElementById('refresh-routes');
 
-      const approvedRoutes = [
-        { slug: '/sales_flyer', target: '/sales_index.html' },
-        { slug: '/territory_map', target: '/app' },
-        { slug: '/cloudflare_login', target: '/cloudflare_login.html' },
-        { slug: '/cloudflare_denied', target: '/cloudflare_denied.html' },
-        { slug: '/', target: '/' }
-      ];
+      let approvedRoutes = [];
 
       const unlock = (token) => {
         localStorage.setItem(storageKey, token);
@@ -363,6 +357,21 @@
         routesSelect.innerHTML = approvedRoutes.map(r => `<option value="${r.target}">${r.target}</option>`).join('');
       };
 
+      const loadRoutes = async () => {
+        try {
+          const res = await fetch('/pages.json', { cache: 'no-cache' });
+          if (!res.ok) throw new Error('failed');
+          const data = await res.json();
+          approvedRoutes = data.routes || [];
+          renderRoutes();
+          routeStatus.textContent = 'Routes loaded.';
+          routeStatus.className = 'text-xs text-slate-500 mt-2';
+        } catch (err) {
+          routeStatus.textContent = 'Could not load routes manifest.';
+          routeStatus.className = 'text-xs text-red-600 mt-2';
+        }
+      };
+
       const isApprovedTarget = (target) => approvedRoutes.some(r => r.target === target);
       const cleanSlug = (slug) => {
         const s = slug.trim();
@@ -387,8 +396,8 @@
         routeStatus.className = 'text-xs text-emerald-600 mt-2';
       });
 
-      refreshRoutes.addEventListener('click', renderRoutes);
-      renderRoutes();
+      refreshRoutes.addEventListener('click', loadRoutes);
+      loadRoutes();
     })();
   </script>
 </body>
