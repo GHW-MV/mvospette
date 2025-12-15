@@ -4,3 +4,5 @@ pydeck==0.9.1
 pyarrow==17.0.0
 fastapi==0.115.4
 uvicorn==0.30.6
+Jinja2==3.1.4
+PyYAML==6.0.2

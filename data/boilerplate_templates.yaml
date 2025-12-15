@@ -1,0 +1,352 @@
+- id: python-fastapi-service
+  name: Python FastAPI Service
+  version: "1.0.0"
+  category: backend
+  language: python
+  description: Minimal FastAPI service with health check, settings, Dockerfile, and dev script.
+  tags: [api, fastapi, python, docker]
+  defaults:
+    service_name: boilerplate-service
+    maintainer_email: platform@example.com
+    port: 8080
+    python_version: "3.11-slim"
+  files:
+    README.md: |-
+      # {{ service_name | pascal }} API
+
+      A production-ready FastAPI starter with health check, env-configurable port, and Docker support.
+
+      ## Quickstart
+      ```bash
+      python -m venv .venv
+      source .venv/bin/activate
+      pip install -r requirements.txt
+      uvicorn app.main:app --reload --port {{ port }}
+      ```
+
+      ## Deploy
+      ```bash
+      docker build -t {{ service_name | slugify }}:{{ template_version }} .
+      docker run -p {{ port }}:{{ port }} --env-file .env {{ service_name | slugify }}:{{ template_version }}
+      ```
+
+      Maintainer: {{ maintainer_email }}
+    app/main.py: |-
+      from fastapi import FastAPI
+      from pydantic import BaseSettings
+
+
+      class Settings(BaseSettings):
+          app_name: str = "{{ service_name | pascal }}"
+          port: int = {{ port }}
+          maintainer_email: str = "{{ maintainer_email }}"
+
+
+      settings = Settings()
+      app = FastAPI(title=settings.app_name, version="{{ template_version }}")
+
+
+      @app.get("/health")
+      def health() -> dict:
+          return {
+              "status": "ok",
+              "service": settings.app_name,
+              "maintainer": settings.maintainer_email,
+              "generated_at": "{{ generated_at }}",
+          }
+    requirements.txt: |-
+      fastapi==0.115.4
+      uvicorn==0.30.6
+      pydantic==2.9.2
+    Dockerfile: |-
+      FROM python:{{ python_version }}
+      WORKDIR /app
+      ENV PYTHONDONTWRITEBYTECODE=1
+      ENV PYTHONUNBUFFERED=1
+      COPY requirements.txt .
+      RUN pip install --no-cache-dir -r requirements.txt
+      COPY app ./app
+      CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "{{ port }}"]
+    .env.example: |-
+      APP_NAME={{ service_name | pascal }}
+      PORT={{ port }}
+      MAINTAINER_EMAIL={{ maintainer_email }}
+    scripts/dev.sh: |-
+      #!/usr/bin/env bash
+      set -euo pipefail
+      export PYTHONPATH=.
+      uvicorn app.main:app --host 0.0.0.0 --port ${PORT:-{{ port }}}
+
+- id: node-express-service
+  name: Node Express Service
+  version: "1.0.0"
+  category: backend
+  language: node
+  description: Express service with health route, helmet/cors, env config, and Dockerfile.
+  tags: [api, node, express, docker]
+  defaults:
+    service_name: express-api
+    port: 3000
+    maintainer_email: platform@example.com
+  files:
+    README.md: |-
+      # {{ service_name | pascal }} (Express)
+
+      ## Install
+      ```bash
+      npm install
+      npm run dev
+      ```
+
+      ## Docker
+      ```bash
+      docker build -t {{ service_name | slugify }}:{{ template_version }} .
+      docker run -p {{ port }}:{{ port }} --env-file .env {{ service_name | slugify }}:{{ template_version }}
+      ```
+    package.json: |-
+      {
+        "name": "{{ service_name | slugify }}",
+        "version": "{{ template_version }}",
+        "main": "src/server.js",
+        "type": "module",
+        "scripts": {
+          "dev": "NODE_ENV=development node src/server.js",
+          "start": "node src/server.js"
+        },
+        "dependencies": {
+          "cors": "^2.8.5",
+          "dotenv": "^16.4.5",
+          "express": "^4.19.2",
+          "helmet": "^7.1.0",
+          "morgan": "^1.10.0"
+        }
+      }
+    src/server.js: |-
+      import express from "express";
+      import cors from "cors";
+      import helmet from "helmet";
+      import morgan from "morgan";
+      import dotenv from "dotenv";
+
+      dotenv.config();
+
+      const app = express();
+      const port = process.env.PORT || {{ port }};
+      const serviceName = process.env.SERVICE_NAME || "{{ service_name }}";
+      const maintainer = process.env.MAINTAINER_EMAIL || "{{ maintainer_email }}";
+
+      app.use(helmet());
+      app.use(cors());
+      app.use(express.json());
+      app.use(morgan("combined"));
+
+      app.get("/health", (_req, res) => {
+        res.json({
+          status: "ok",
+          service: serviceName,
+          maintainer,
+          generated_at: "{{ generated_at }}",
+        });
+      });
+
+      app.listen(port, () => {
+        console.log(`Service ${serviceName} listening on ${port}`);
+      });
+    Dockerfile: |-
+      FROM node:22-slim
+      WORKDIR /app
+      COPY package.json package-lock.json* ./
+      RUN npm install --production
+      COPY src ./src
+      EXPOSE {{ port }}
+      CMD ["npm", "start"]
+    .env.example: |-
+      SERVICE_NAME={{ service_name }}
+      PORT={{ port }}
+      MAINTAINER_EMAIL={{ maintainer_email }}
+
+- id: terraform-s3-module
+  name: Terraform S3 Module
+  version: "1.0.0"
+  category: ops
+  language: terraform
+  description: Opinionated S3 module with encryption, access logging, and tagging defaults.
+  tags: [terraform, s3, aws, infra]
+  defaults:
+    bucket_name: example-bucket
+    environment: dev
+  files:
+    README.md: |-
+      # S3 Bucket Module
+
+      Creates an encrypted S3 bucket with strict defaults.
+
+      ## Usage
+      ```hcl
+      module "s3" {
+        source      = "../modules/s3"
+        bucket_name = "{{ bucket_name }}"
+        environment = "{{ environment }}"
+      }
+      ```
+    main.tf: |-
+      terraform {
+        required_version = ">= 1.6"
+        required_providers {
+          aws = {
+            source  = "hashicorp/aws"
+            version = "~> 5.0"
+          }
+        }
+      }
+
+      resource "aws_s3_bucket" "this" {
+        bucket = "${var.bucket_name}-${var.environment}"
+        force_destroy = false
+      }
+
+      resource "aws_s3_bucket_server_side_encryption_configuration" "this" {
+        bucket = aws_s3_bucket.this.id
+        rule {
+          apply_server_side_encryption_by_default {
+            sse_algorithm = "aws:kms"
+          }
+        }
+      }
+
+      resource "aws_s3_bucket_public_access_block" "this" {
+        bucket = aws_s3_bucket.this.id
+        block_public_acls   = true
+        block_public_policy = true
+        ignore_public_acls  = true
+        restrict_public_buckets = true
+      }
+
+      resource "aws_s3_bucket_versioning" "this" {
+        bucket = aws_s3_bucket.this.id
+        versioning_configuration {
+          status = "Enabled"
+        }
+      }
+
+      resource "aws_s3_bucket_logging" "this" {
+        bucket = aws_s3_bucket.this.id
+        target_bucket = aws_s3_bucket.this.id
+        target_prefix = "logs/"
+      }
+
+      resource "aws_s3_bucket_policy" "deny_insecure_transport" {
+        bucket = aws_s3_bucket.this.id
+        policy = data.aws_iam_policy_document.deny_insecure.json
+      }
+
+      data "aws_iam_policy_document" "deny_insecure" {
+        statement {
+          sid = "DenyInsecureTransport"
+          effect = "Deny"
+          actions = ["s3:*"]
+          resources = [
+            aws_s3_bucket.this.arn,
+            "${aws_s3_bucket.this.arn}/*"
+          ]
+          principals {
+            type = "*"
+            identifiers = ["*"]
+          }
+          condition {
+            test = "Bool"
+            variable = "aws:SecureTransport"
+            values = ["false"]
+          }
+        }
+      }
+
+      locals {
+        common_tags = {
+          Service     = "{{ bucket_name }}"
+          Environment = "{{ environment }}"
+          ManagedBy   = "boilerplate-factory"
+        }
+      }
+
+      resource "aws_s3_bucket_ownership_controls" "this" {
+        bucket = aws_s3_bucket.this.id
+        rule {
+          object_ownership = "BucketOwnerPreferred"
+        }
+      }
+
+      resource "aws_s3_bucket_acl" "this" {
+        depends_on = [aws_s3_bucket_ownership_controls.this]
+        bucket = aws_s3_bucket.this.id
+        acl    = "private"
+      }
+    variables.tf: |-
+      variable "bucket_name" {
+        description = "Base name for the bucket"
+        type        = string
+      }
+
+      variable "environment" {
+        description = "Environment name suffix"
+        type        = string
+      }
+    outputs.tf: |-
+      output "bucket_name" {
+        value = aws_s3_bucket.this.bucket
+      }
+
+      output "bucket_arn" {
+        value = aws_s3_bucket.this.arn
+      }
+
+- id: sop-incident-response
+  name: SOP - Incident Response
+  version: "1.0.0"
+  category: process
+  language: sop
+  description: Standard operating procedure template for incident response playbooks.
+  tags: [sop, operations, incident]
+  defaults:
+    sop_title: Incident Response Playbook
+    owner: Platform Team
+    severity_levels: "SEV-1 (Critical), SEV-2 (Major), SEV-3 (Minor)"
+  files:
+    SOP.md: |-
+      # {{ sop_title }}
+
+      **Owner:** {{ owner }}
+      **Last generated:** {{ generated_at }}
+
+      ## Purpose
+      Provide a consistent, auditable flow for handling incidents across teams.
+
+      ## Severity Model
+      {{ severity_levels }}
+
+      ## Roles
+      - Incident Commander: Assigns actions, owns communication.
+      - Comms Lead: Updates status channel, stakeholders, and postmortems.
+      - Scribe: Captures timeline and decisions.
+
+      ## Workflow
+      1) Detection -> Declare incident with severity.
+      2) Contain -> Stop the bleeding; isolate impact.
+      3) Eradicate -> Root-cause fix; validate mitigation.
+      4) Recover -> Return to steady state; monitor.
+      5) Review -> Run postmortem within 48 hours.
+
+      ## Checklists
+      - [ ] Create incident room and assign roles.
+      - [ ] Post initial status within 15 minutes.
+      - [ ] Capture customer impact and ETA.
+      - [ ] Track follow-ups with owners and due dates.
+
+      ## Communications
+      - Status channel: #incidents
+      - Stakeholder update cadence: every 30 minutes for SEV-1, 60 for SEV-2.
+
+      ## Artifacts
+      - Timeline doc
+      - Postmortem template
+      - Runbook links
